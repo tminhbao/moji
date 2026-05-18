@@ -36,6 +36,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({ loading: true });
       const { accessToken } = await authService.signIn(username, password);
       set({ accessToken });
+      await get().fetchMe();
       toast.success("Đăng nhập thành công! Chào mừng bạn quay lại với Moji");
     } catch (error) {
       console.error("Sign in failed:", error);
@@ -59,7 +60,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       set({ loading: true });
       const user = await authService.fetchMe();
-
       set({ user });
     } catch (error) {
       console.error(error);
