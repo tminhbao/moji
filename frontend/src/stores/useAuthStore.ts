@@ -35,7 +35,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       set({ loading: true });
       const { accessToken } = await authService.signIn(username, password);
-      set({ accessToken });
+      get().setAccessToken(accessToken);
       await get().fetchMe();
       toast.success("Đăng nhập thành công! Chào mừng bạn quay lại với Moji");
     } catch (error) {
