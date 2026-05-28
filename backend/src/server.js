@@ -4,6 +4,7 @@ import { connectDB } from "./libs/db.js";
 import authRoute from "./routes/authRoute.js";
 import friendRoute from "./routes/friendRoute.js";
 import messageRoute from "./routes/messageRoute.js";
+import conversationRoute from "./routes/conversationRoute.js";
 import cookieParser from "cookie-parser";
 import { setServers } from "node:dns/promises";
 import { protectedRoute } from "./middlewares/authMiddleware.js";
@@ -26,6 +27,7 @@ app.use(protectedRoute);
 app.use("/api/user", authRoute);
 app.use("/api/friends", friendRoute);
 app.use("/api/messages", messageRoute);
+app.use("/api/conversations", conversationRoute);
 
 setServers(["1.1.1.1", "8.8.8.8"]);
 connectDB().then(() => {
