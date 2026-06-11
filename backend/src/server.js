@@ -11,6 +11,7 @@ import { protectedRoute } from "./middlewares/authMiddleware.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
+import { app, server } from "./socket/index.js";
 
 dotenv.config();
 
@@ -40,7 +41,7 @@ app.use("/api/conversations", conversationRoute);
 
 setServers(["1.1.1.1", "8.8.8.8"]);
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
   });
 });
