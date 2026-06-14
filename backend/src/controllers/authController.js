@@ -171,3 +171,14 @@ export const refreshToken = async (req, res) => {
     return res.status(500).json({ message: "Lỗi hệ thống" });
   }
 };
+
+// lấy thông tin user hiện tại
+export const getMe = async (req, res) => {
+  try {
+    // user đã được set bởi protectedRoute middleware
+    return res.status(200).json({ user: req.user });
+  } catch (error) {
+    console.error("Lỗi khi gọi getMe", error);
+    return res.status(500).json({ message: "Lỗi hệ thống" });
+  }
+};
